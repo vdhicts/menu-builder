@@ -66,7 +66,7 @@ class ItemCollection
      * @param mixed $parentId
      * @return bool
      */
-    public function hasChildren($parentId)
+    public function hasChildren($parentId = null)
     {
         return count($this->getChildren($parentId)) !== 0;
     }

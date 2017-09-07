@@ -23,6 +23,7 @@ class Navbar implements Contracts\Renderer
         // When the item is a divider, set the divider class and return the list-item
         if ($item->isDivider()) {
             $listItem->setAttribute('class', 'divider');
+            $listItem->setAttribute('role', 'separator');
             return $listItem;
         }
 
@@ -33,8 +34,8 @@ class Navbar implements Contracts\Renderer
 
         // Create the link
         $listItemLink = new HtmlElement('a');
-        if ($item->hasLink()) {
-            $listItemLink->setAttribute('href', $item->getLink());
+        if ($item->hasTarget()) {
+            $listItemLink->setAttribute('href', $item->getTarget());
         } else {
             $listItemLink->setAttribute('href', '#');
         }
@@ -45,7 +46,7 @@ class Navbar implements Contracts\Renderer
             $listItemLink->setAttribute('class', 'dropdown-toggle');
             $listItemLink->setAttribute('data-toggle', 'dropdown');
 
-            $caret = new HtmlElement('span', ['class' => 'caret']);
+            $caret = new HtmlElement('span', '', ['class' => 'caret']);
             $listItemLink->addText($caret->generate());
         }
 

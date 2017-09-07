@@ -16,24 +16,21 @@ class ListGroup implements Contracts\Renderer
      */
     public function generateItem(Item $item): HtmlElement
     {
-        // Create a link if the item has a link and isn't a divider
-        if ($item->hasLink() && ! $item->isDivider()) {
-            $listGroupItem = new HtmlElement('a');
-            $listGroupItem->setAttribute('href', $item->getLink());
-        } else { // Otherwise the item is just a div
-            $listGroupItem = new HtmlElement('div');
-        }
+        $listGroupItem = new HtmlElement('li', '', ['class' => 'list-group-item']);
 
-        // Add the required css class
-        $listGroupItem->setAttribute('class', 'list-group-item');
-
-        // When the item is a divider, we are done
-        if ( ! $item->isDivider()) {
+        // When the item is a divider, just add the class and we're done
+        if ($item->isDivider()) {
+            $listGroupItem->addAttributeValue('class', 'list-group-item-divider');
             return $listGroupItem;
         }
 
-        // Set the text
-        $listGroupItem->setText($item->getName());
+        // Create a link if the item has a link and isn't a divider
+        if ($item->hasTarget()) {
+            $target = new HtmlElement('a', $item->getName(), ['href' => $item->getTarget()]);
+            $listGroupItem->inject($target);
+        } else { // Otherwise the item is just a div
+            $listGroupItem->setText($item->getName());
+        }
 
         return $listGroupItem;
     }
@@ -46,13 +43,17 @@ class ListGroup implements Contracts\Renderer
      */
     public function generate(ItemCollection $itemCollection, $parentId = null): string
     {
-        if (! $itemCollection->hasChildren($parentId)) {
-            return '';
-        }
-
-        $list = new HtmlElement('ul', ['class' => 'list-group']);
+        $list = new HtmlElement('ul', '', ['class' => 'list-group']);
         foreach ($itemCollection->getChildren($parentId) as $itemId) {
-            $list->inject($this->generateItem($itemCollection->getItem($itemId)));
+            $listItem = $this->generateItem($itemCollection->getItem($itemId));
+
+            // Generate children recursively
+            $hasChildren = $itemCollection->hasChildren($itemId);
+            if ($hasChildren) {
+                $listItem->addText($this->generate($itemCollection, $itemId));
+            }
+
+            $list->inject($listItem);
         }
         return $list->generate();
     }
