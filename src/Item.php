@@ -64,7 +64,7 @@ class Item
      * Stores the id.
      * @param mixed $id
      */
-    public function setId($id)
+    private function setId($id)
     {
         $this->id = $id;
     }
@@ -82,7 +82,7 @@ class Item
      * Stores the name.
      * @param string $name
      */
-    public function setName(string $name)
+    private function setName(string $name)
     {
         $this->name = $name;
     }
@@ -110,7 +110,7 @@ class Item
      * @param null|string $target
      * @throws Exceptions\InvalidLinkException
      */
-    public function setTarget(string $target = null)
+    private function setTarget(string $target = null)
     {
         if (! is_null($target) && ! filter_var($target, FILTER_VALIDATE_URL)) {
             throw new Exceptions\InvalidLinkException(sprintf(
@@ -144,7 +144,7 @@ class Item
      * Stores the parent id.
      * @param mixed $parentId
      */
-    public function setParentId($parentId = null)
+    private function setParentId($parentId = null)
     {
         $this->parentId = $parentId;
     }
@@ -162,7 +162,7 @@ class Item
      * Stores if this item is a divider.
      * @param bool $divider
      */
-    public function setDivider(bool $divider = false)
+    private function setDivider(bool $divider = false)
     {
         $this->divider = $divider;
     }
