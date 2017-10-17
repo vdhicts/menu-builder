@@ -34,8 +34,8 @@ class Navbar implements Contracts\Renderer
 
         // Create the link
         $listItemLink = new HtmlElement('a');
-        if ($item->hasTarget()) {
-            $listItemLink->setAttribute('href', $item->getTarget());
+        if ($item->hasLink()) {
+            $listItemLink->setAttribute('href', $item->getLink());
         } else {
             $listItemLink->setAttribute('href', '#');
         }

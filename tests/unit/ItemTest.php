@@ -9,17 +9,17 @@ class ItemTest extends TestCase
     {
         $id = 1;
         $name = 'Google';
-        $target = 'http://www.google.com';
+        $link = 'http://www.google.com';
         $parentId = 1;
         $isDivider = false;
 
-        $item = new MenuBuilder\Item($id, $name, $target, $parentId, $isDivider);
+        $item = new MenuBuilder\Item($id, $name, $link, $parentId, $isDivider);
 
         $this->assertInstanceOf(MenuBuilder\Item::class, $item);
         $this->assertSame($id, $item->getId());
         $this->assertSame($name, $item->getName());
-        $this->assertSame($target, $item->getTarget());
-        $this->assertTrue($item->hasTarget());
+        $this->assertSame($link, $item->getLink());
+        $this->assertTrue($item->hasLink());
         $this->assertSame($parentId, $item->getParentId());
         $this->assertTrue($item->hasParent());
         $this->assertSame($isDivider, $item->isDivider());
@@ -35,8 +35,8 @@ class ItemTest extends TestCase
         $this->assertInstanceOf(MenuBuilder\Item::class, $item);
         $this->assertSame($id, $item->getId());
         $this->assertSame($name, $item->getName());
-        $this->assertNull($item->getTarget());
-        $this->assertFalse($item->hasTarget());
+        $this->assertNull($item->getLink());
+        $this->assertFalse($item->hasLink());
         $this->assertNull($item->getParentId());
         $this->assertFalse($item->hasParent());
         $this->assertFalse($item->isDivider());

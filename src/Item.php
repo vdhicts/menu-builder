@@ -17,10 +17,10 @@ class Item
     private $name;
 
     /**
-     * The target the menu item should link to.
+     * The link the menu item should link to.
      * @var string|null
      */
-    private $target = null;
+    private $link = null;
 
     /**
      * Parent id which the menu item belongs to.
@@ -46,7 +46,7 @@ class Item
     {
         $this->setId($id);
         $this->setName($name);
-        $this->setTarget($link);
+        $this->setLink($link);
         $this->setParentId($parentId);
         $this->setDivider($divider);
     }
@@ -91,35 +91,32 @@ class Item
      * Returns the link.
      * @return null|string
      */
-    public function getTarget()
+    public function getLink()
     {
-        return $this->target;
+        return $this->link;
     }
 
     /**
      * Determines if the menu item has a link.
      * @return bool
      */
-    public function hasTarget(): bool
+    public function hasLink(): bool
     {
-        return ! is_null($this->getTarget());
+        return ! is_null($this->getLink());
     }
 
     /**
      * Stores the link.
-     * @param null|string $target
+     * @param null|string $link
      * @throws Exceptions\InvalidLinkException
      */
-    private function setTarget(string $target = null)
+    private function setLink(string $link = null)
     {
-        if (! is_null($target) && ! filter_var($target, FILTER_VALIDATE_URL)) {
-            throw new Exceptions\InvalidLinkException(sprintf(
-                'Provided link "%s" should be a valid URL or null',
-                $target
-            ));
+        if (! is_null($link) && ! filter_var($link, FILTER_VALIDATE_URL)) {
+            throw new Exceptions\InvalidLinkException($link);
         }
 
-        $this->target = $target;
+        $this->link = $link;
     }
 
     /**

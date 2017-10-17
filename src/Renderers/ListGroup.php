@@ -25,9 +25,9 @@ class ListGroup implements Contracts\Renderer
         }
 
         // Create a link if the item has a link and isn't a divider
-        if ($item->hasTarget()) {
-            $target = new HtmlElement('a', $item->getName(), ['href' => $item->getTarget()]);
-            $listGroupItem->inject($target);
+        if ($item->hasLink()) {
+            $link = new HtmlElement('a', $item->getName(), ['href' => $item->getLink()]);
+            $listGroupItem->inject($link);
         } else { // Otherwise the item is just a div
             $listGroupItem->setText($item->getName());
         }
