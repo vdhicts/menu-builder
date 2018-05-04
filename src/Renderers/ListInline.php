@@ -1,22 +1,22 @@
 <?php
 
-namespace Vdhicts\MenuBuilder\Renderers;
+namespace Vdhicts\Dicms\Menu\Renderers;
 
-use Vdhicts\HtmlElement\HtmlElement;
-use Vdhicts\MenuBuilder\Contracts;
-use Vdhicts\MenuBuilder\Item;
-use Vdhicts\MenuBuilder\ItemCollection;
+use Vdhicts\Dicms\Html;
+use Vdhicts\Dicms\Menu\Contracts;
+use Vdhicts\Dicms\Menu\Item;
+use Vdhicts\Dicms\Menu\ItemCollection;
 
 class ListInline implements Contracts\Renderer
 {
     /**
      * Renders a single item.
      * @param Item $item
-     * @return HtmlElement
+     * @return Html\Element
      */
-    public function generateItem(Item $item): HtmlElement
+    public function generateItem(Item $item): Html\Element
     {
-        $listGroupItem = new HtmlElement('li');
+        $listGroupItem = new Html\Element('li');
 
         // When the item is a divider, just add the class and we're done
         if ($item->isDivider()) {
@@ -26,7 +26,7 @@ class ListInline implements Contracts\Renderer
 
         // Create a link if the item has a link and isn't a divider
         if ($item->hasLink()) {
-            $link = new HtmlElement('a', $item->getName(), ['href' => $item->getLink()]);
+            $link = new Html\Element('a', $item->getName(), ['href' => $item->getLink()]);
             $listGroupItem->inject($link);
         } else { // Otherwise the item is just a div
             $listGroupItem->setText($item->getName());
@@ -43,7 +43,7 @@ class ListInline implements Contracts\Renderer
      */
     public function generate(ItemCollection $itemCollection, $parentId = null): string
     {
-        $list = new HtmlElement('ul', '', ['class' => 'list-inline']);
+        $list = new Html\Element('ul', '', ['class' => 'list-inline']);
         foreach ($itemCollection->getChildren($parentId) as $itemId) {
             $listItem = $this->generateItem($itemCollection->getItem($itemId));
 

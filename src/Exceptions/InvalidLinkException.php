@@ -1,10 +1,10 @@
 <?php
 
-namespace Vdhicts\MenuBuilder\Exceptions;
+namespace Vdhicts\Dicms\Menu\Exceptions;
 
 use Throwable;
 
-class InvalidLinkException extends MenuBuilderException
+class InvalidLinkException extends MenuException
 {
     /**
      * InvalidLinkException constructor.

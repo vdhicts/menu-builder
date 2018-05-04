@@ -1,6 +1,6 @@
 <?php
 
-namespace Vdhicts\MenuBuilder;
+namespace Vdhicts\Dicms\Menu;
 
 class Builder
 {
