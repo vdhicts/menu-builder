@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use Vdhicts\MenuBuilder;
+use Vdhicts\Dicms\Menu;
 
 class ItemTest extends TestCase
 {
@@ -13,9 +13,9 @@ class ItemTest extends TestCase
         $parentId = 1;
         $isDivider = false;
 
-        $item = new MenuBuilder\Item($id, $name, $link, $parentId, $isDivider);
+        $item = new Menu\Item($id, $name, $link, $parentId, $isDivider);
 
-        $this->assertInstanceOf(MenuBuilder\Item::class, $item);
+        $this->assertInstanceOf(Menu\Item::class, $item);
         $this->assertSame($id, $item->getId());
         $this->assertSame($name, $item->getName());
         $this->assertSame($link, $item->getLink());
@@ -30,9 +30,9 @@ class ItemTest extends TestCase
         $id = 1;
         $name = 'Google';
 
-        $item = new MenuBuilder\Item($id, $name);
+        $item = new Menu\Item($id, $name);
 
-        $this->assertInstanceOf(MenuBuilder\Item::class, $item);
+        $this->assertInstanceOf(Menu\Item::class, $item);
         $this->assertSame($id, $item->getId());
         $this->assertSame($name, $item->getName());
         $this->assertNull($item->getLink());
@@ -44,8 +44,8 @@ class ItemTest extends TestCase
 
     public function testItemWithInvalidTarget()
     {
-        $this->expectException(MenuBuilder\Exceptions\InvalidLinkException::class);
+        $this->expectException(Menu\Exceptions\InvalidLinkException::class);
 
-        new MenuBuilder\Item(1, 'test', 'test');
+        new Menu\Item(1, 'test', 'test');
     }
 }

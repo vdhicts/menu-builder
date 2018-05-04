@@ -1,6 +1,6 @@
 <?php
 
-namespace Vdhicts\MenuBuilder;
+namespace Vdhicts\Dicms\Menu;
 
 class Item
 {
@@ -41,6 +41,7 @@ class Item
      * @param string|null $link
      * @param mixed $parentId
      * @param bool $divider
+     * @throws Exceptions\InvalidLinkException
      */
     public function __construct($id, string $name, string $link = null, $parentId = null, bool $divider = false)
     {
