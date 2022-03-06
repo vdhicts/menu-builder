@@ -1,6 +1,6 @@
 <?php
 
-namespace Vdhicts\Dicms\Menu;
+namespace Vdhicts\Menu;
 
 class Item
 {
@@ -12,15 +12,13 @@ class Item
 
     /**
      * Name of the menu item.
-     * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * The link the menu item should link to.
-     * @var string|null
      */
-    private $link = null;
+    private ?string $link = null;
 
     /**
      * Parent id which the menu item belongs to.
@@ -30,17 +28,12 @@ class Item
 
     /**
      * Determines if the menu item is a divider or not.
-     * @var bool
      */
-    private $divider = false;
+    private bool $divider = false;
 
     /**
-     * Item constructor.
      * @param mixed $id
-     * @param string $name
-     * @param string|null $link
      * @param mixed $parentId
-     * @param bool $divider
      * @throws Exceptions\InvalidLinkException
      */
     public function __construct($id, string $name, string $link = null, $parentId = null, bool $divider = false)
@@ -53,7 +46,6 @@ class Item
     }
 
     /**
-     * Returns the id.
      * @return mixed
      */
     public function getId()
@@ -62,66 +54,52 @@ class Item
     }
 
     /**
-     * Stores the id.
      * @param mixed $id
      */
-    private function setId($id)
+    private function setId($id): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
-    /**
-     * Returns the name.
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Stores the name.
-     * @param string $name
-     */
-    private function setName(string $name)
+    private function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * Returns the link.
-     * @return null|string
-     */
-    public function getLink()
+    public function getLink(): ?string
     {
         return $this->link;
     }
 
-    /**
-     * Determines if the menu item has a link.
-     * @return bool
-     */
     public function hasLink(): bool
     {
         return ! is_null($this->getLink());
     }
 
     /**
-     * Stores the link.
-     * @param null|string $link
      * @throws Exceptions\InvalidLinkException
      */
-    private function setLink(string $link = null)
+    private function setLink(string $link = null): self
     {
         if (! is_null($link) && ! filter_var($link, FILTER_VALIDATE_URL)) {
             throw new Exceptions\InvalidLinkException($link);
         }
 
         $this->link = $link;
+
+        return $this;
     }
 
     /**
-     * Returns the parent id.
      * @return mixed
      */
     public function getParentId()
@@ -129,39 +107,30 @@ class Item
         return $this->parentId;
     }
 
-    /**
-     * Determines if the menu item has a parent.
-     * @return bool
-     */
-    public function hasParent()
+    public function hasParent(): bool
     {
         return ! is_null($this->getParentId());
     }
 
     /**
-     * Stores the parent id.
      * @param mixed $parentId
      */
-    private function setParentId($parentId = null)
+    private function setParentId($parentId = null): self
     {
         $this->parentId = $parentId;
+
+        return $this;
     }
 
-    /**
-     * Returns if this item is a divider.
-     * @return bool
-     */
     public function isDivider(): bool
     {
         return $this->divider;
     }
 
-    /**
-     * Stores if this item is a divider.
-     * @param bool $divider
-     */
-    private function setDivider(bool $divider = false)
+    private function setDivider(bool $divider = false): self
     {
         $this->divider = $divider;
+
+        return $this;
     }
 }

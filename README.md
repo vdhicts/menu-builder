@@ -6,7 +6,7 @@ further implemented.
 
 ## Requirements
 
-This package requires PHP 7 and the renderers make use of [vdhicts/html-element](https://github.com/vdhicts/dicms-html-element).
+This package requires PHP 7.4+ and the renderers make use of [vdhicts/html-element](https://github.com/vdhicts/html-element).
 
 ## Installation
 
@@ -14,14 +14,12 @@ This package can be used in any PHP project or with any framework.
 
 You can install the package via composer:
 
-``` bash
-composer require vdhicts/menu-builder
-```
+`composer require vdhicts/menu-builder`
 
 ## Usage
 
 ```php
-use Vdhicts\Dicms\Menu;
+use Vdhicts\Menu;
     
 $item = new Menu\Item(1, 'Search engines');
 $subItemGoogle = new Menu\Item(2, 'Google', 'http://www.google.com', $item->getId());
@@ -159,21 +157,23 @@ In which you should replace the menu id.
 
 ## Tests
 
-Full code coverage unit tests are available in the `tests` folder. Run via phpunit:
+Unit tests are available in the `tests` folder. Run with:
 
-`vendor\bin\phpunit`
+`composer test`
 
-By default a coverage report will be generated in the `build/coverage` folder.
+When you want a code coverage report which will be generated in the `build/report` folder. Run with:
+
+`composer test-coverage`
 
 ## Contribution
 
-Any contribution is welcome, but it should be fully tested, meet the PSR-2 standard and please create one pull request 
-per feature. In exchange you will be credited as contributor on this page.
+Any contribution is welcome, but it should meet the PSR-12 standard and please create one pull request per feature/bug.
+In exchange, you will be credited as contributor on this page.
 
 ## Security
 
-If you discover any security related issues in this or other packages of Vdhicts, please email info@vdhicts.nl instead
-of using the issue tracker.
+If you discover any security related issues in this or other packages of Vdhicts, please email security@vdhicts.nl
+instead of using the issue tracker.
 
 ## License
 
@@ -181,6 +181,5 @@ This package is open-sourced software licensed under the [MIT license](http://op
 
 ## About vdhicts
 
-[Van der Heiden ICT services](https://www.vdhicts.nl) is the name of my personal company for which I work as
-freelancer. Van der Heiden ICT services develops and implements IT solutions for businesses and educational
-institutions.
+[Vdhicts](https://www.vdhicts.nl) is the name of my personal company for which I work as freelancer. Vdhicts develops
+and implements IT solutions for businesses and educational institutions.

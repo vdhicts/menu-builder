@@ -1,11 +1,11 @@
 <?php
 
-namespace Vdhicts\Dicms\Menu\Renderers;
+namespace Vdhicts\Menu\Renderers;
 
-use Vdhicts\Dicms\Html;
-use Vdhicts\Dicms\Menu\Contracts;
-use Vdhicts\Dicms\Menu\Item;
-use Vdhicts\Dicms\Menu\ItemCollection;
+use Vdhicts\HtmlElement\HtmlElement;
+use Vdhicts\Menu\Contracts;
+use Vdhicts\Menu\Item;
+use Vdhicts\Menu\ItemCollection;
 
 class Navbar implements Contracts\Renderer
 {
@@ -13,12 +13,12 @@ class Navbar implements Contracts\Renderer
      * Renders a single item.
      * @param Item $item
      * @param bool $hasChildren
-     * @return Html\Element
+     * @return HtmlElement
      */
-    public function generateItem(Item $item, bool $hasChildren = false): Html\Element
+    public function generateItem(Item $item, bool $hasChildren = false): HtmlElement
     {
         // Create the list item element
-        $listItem = new Html\Element('li');
+        $listItem = new HtmlElement('li');
 
         // When the item is a divider, set the divider class and return the list-item
         if ($item->isDivider()) {
@@ -33,7 +33,7 @@ class Navbar implements Contracts\Renderer
         }
 
         // Create the link
-        $listItemLink = new Html\Element('a');
+        $listItemLink = new HtmlElement('a');
         if ($item->hasLink()) {
             $listItemLink->setAttribute('href', $item->getLink());
         } else {
@@ -46,7 +46,7 @@ class Navbar implements Contracts\Renderer
             $listItemLink->setAttribute('class', 'dropdown-toggle');
             $listItemLink->setAttribute('data-toggle', 'dropdown');
 
-            $caret = new Html\Element('span', '', ['class' => 'caret']);
+            $caret = new HtmlElement('span', '', ['class' => 'caret']);
             $listItemLink->addText($caret->generate());
         }
 
@@ -69,7 +69,7 @@ class Navbar implements Contracts\Renderer
         }
 
         // Create the unordered list for the navbar
-        $list = new Html\Element('ul');
+        $list = new HtmlElement('ul');
 
         // When it isn't a submenu, add the navbar css classes
         if (is_null($parentId)) {
