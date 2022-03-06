@@ -1,27 +1,23 @@
 <?php
 
-namespace Vdhicts\Dicms\Menu;
+namespace Vdhicts\Menu;
 
 class ItemCollection
 {
     /**
      * Holds the items indexed by their id.
-     * @var array
      */
-    private $items = [];
+    private array $items = [];
 
     /**
      * Holds the item id's per parent.
-     * @var array
      */
-    private $parents = [];
+    private array $parents = [];
 
     /**
-     * Returns an item.
      * @param mixed $id
-     * @return null|Item
      */
-    public function getItem($id)
+    public function getItem($id): ?Item
     {
         return array_key_exists($id, $this->items)
             ? $this->items[$id]
@@ -29,11 +25,9 @@ class ItemCollection
     }
 
     /**
-     * Stores in item in the collection.
-     * @param Item $item
      * @return $this
      */
-    public function addItem(Item $item)
+    public function addItem(Item $item): self
     {
         $itemParent = is_null($item->getParentId())
             ? 0
@@ -46,11 +40,9 @@ class ItemCollection
     }
 
     /**
-     * Return the child id's of the parent.
      * @param mixed $parentId
-     * @return array
      */
-    public function getChildren($parentId = null)
+    public function getChildren($parentId = null): array
     {
         if (is_null($parentId)) {
             return $this->parents[0];
@@ -62,11 +54,9 @@ class ItemCollection
     }
 
     /**
-     * Determines if a parent has children.
      * @param mixed $parentId
-     * @return bool
      */
-    public function hasChildren($parentId = null)
+    public function hasChildren($parentId = null): bool
     {
         return count($this->getChildren($parentId)) !== 0;
     }

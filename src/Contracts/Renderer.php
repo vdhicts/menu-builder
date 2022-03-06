@@ -1,8 +1,8 @@
 <?php
 
-namespace Vdhicts\Dicms\Menu\Contracts;
+namespace Vdhicts\Menu\Contracts;
 
-use Vdhicts\Dicms\Menu\ItemCollection;
+use Vdhicts\Menu\ItemCollection;
 
 interface Renderer
 {

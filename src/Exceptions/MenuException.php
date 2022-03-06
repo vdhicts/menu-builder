@@ -1,6 +1,6 @@
 <?php
 
-namespace Vdhicts\Dicms\Menu\Exceptions;
+namespace Vdhicts\Menu\Exceptions;
 
 use Exception;
 
